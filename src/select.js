@@ -3,27 +3,44 @@ import React, { Component } from 'react';
 import AsyncSelect from 'react-select/lib/Async';
 import { colourOptions } from '../data';
 
-const filterColors = (inputValue: string) => {
-  return colourOptions.filter(i =>
-      i.label.toLowerCase().includes(inputValue.toLowerCase())
-  );
-};
+class SelectAsync extends Component {
+  constructor() {
+    super();
+    this.state = {
+      inputValue: '',
+    };
+  };
 
-const promiseOptions = inputValue =>
+
+  handleInputChange = (newValue) => {
+    const inputValue = newValue.replace(/\W/g, '');
+    this.setState({ inputValue });
+    return inputValue;
+  }
+  
+  filterColors = (inputValue) => {
+    return colourOptions.filter(i =>
+      i.label.toLowerCase().includes(inputValue.toLowerCase())
+    );
+  }
+  
+  promiseOptions = inputValue =>
   new Promise(resolve => {
     setTimeout(() => {
       resolve(filterColors(inputValue));
     }, 1000);
   });
 
-export default class WithPromises extends Component {
   render() {
     return (
-      <AsyncSelect 
-        cacheOptions 
-        defaultOptions 
-        loadOptions={promiseOptions} 
+      <AsyncSelect
+        isMulti
+        cacheOptions
+        defaultOptions
+        loadOptions={ promiseOptions }
       />
     );
   }
-}
+    }
+
+export default SelectAsync
