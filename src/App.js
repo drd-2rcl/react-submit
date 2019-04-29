@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 
 import InputFoo from './inputFoo'
+import SelectAsync from './select';
 
 const ThemeContext = React.createContext('claro');
 
@@ -18,7 +19,6 @@ class App extends Component {
       theme: this.state.theme === 'light' ? 'dark' : 'light'
     });
   }
-
   
   handleData = (data) => {
     this.setState({
@@ -48,6 +48,7 @@ class App extends Component {
         </ThemeContext.Provider>
         <InputFoo handlerFromParant={this.handleData} /> 
         <h5>Received by parent:<br />{this.state.fromChild}</h5>
+        <SelectAsync />
       </div>
     );
   }
