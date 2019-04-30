@@ -22,27 +22,55 @@ class SelectAsync extends Component {
         i.label.toLowerCase().includes(inputValue.toLowerCase())
       );
     }
+
+    const loadOptions = (inputValue, callback) => {
+      setTimeout(() => {
+        callback(filterColors(inputValue));
+      }, 1000);
+    }
+
+    // apply filter for 3 letters or more
+    // javascript ternary inside filter for min length inside label
+    //  return colourOptions.filter(i => 
+    //    i.label.lenght) 
+
     
-    const promiseOptions = inputValue =>
-      new Promise(resolve => {
-        setTimeout(() => {
-          resolve(filterColors(inputValue));
-        }, 1000);
-    });
+    // const promiseOptions = inputValue =>
+    //   new Promise(resolve => {
+    //     setTimeout(() => {
+    //       resolve(filterColors(inputValue));
+    //     }, 1000);
+    // });
 
     const colourOptions = [
+      { value: 'chocolate', label: 'Chocolate' },
+      { value: 'strawberry', label: 'Strawberry' },
+      { value: 'vanilla', label: 'Vanilla' },
+      { value: 'chocolate', label: 'Chocolate' },
+      { value: 'strawberry', label: 'Strawberry' },
+      { value: 'vanilla', label: 'Vanilla' },
+      { value: 'chocolate', label: 'Chocolate' },
+      { value: 'strawberry', label: 'Strawberry' },
+      { value: 'vanilla', label: 'Vanilla' },
+      { value: 'chocolate', label: 'Chocolate' },
+      { value: 'strawberry', label: 'Strawberry' },
+      { value: 'vanilla', label: 'Vanilla' },
       { value: 'chocolate', label: 'Chocolate' },
       { value: 'strawberry', label: 'Strawberry' },
       { value: 'vanilla', label: 'Vanilla' }
     ];
 
     return (
-      <AsyncSelect
-        isMulti
-        cacheOptions
-        defaultOptions
-        loadOptions={ promiseOptions }
-      />
+      <div>
+        <pre>inputValue: {this.state.inputValue}</pre>
+        <AsyncSelect
+          isMulti
+          cacheOptions
+          defaultOptions
+          loadOptions={ loadOptions }
+          onInputChange={ this.handleInputChange }
+          />
+      </div>
     );
   }
     }
