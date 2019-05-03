@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 
 import InputFoo from './inputFoo'
 import SelectAsync from './select';
+import RenderInput from './renderInput';
 
 const ThemeContext = React.createContext('claro');
 
@@ -26,19 +27,19 @@ class App extends Component {
     });
   }
 
-  themedButton = (props) => {
-    return (
-      <ThemeContext.Consumer>
-        {
-          theme => (
-            <a style={{ backgroundColor: theme === 'dark' ? '#333' : '#CCC' }}>
-              Meu botão
-            </a>
-          )
-        }
-      </ThemeContext.Consumer>
-    )
-  }
+  // themedButton = (props) => {
+  //   return (
+  //     <ThemeContext.Consumer>
+  //       {
+  //         theme => (
+  //           <a style={{ backgroundColor: theme === 'dark' ? '#333' : '#CCC' }}>
+  //             Meu botão
+  //           </a>
+  //         )
+  //       }
+  //     </ThemeContext.Consumer>
+  //   )
+  // }
   
   render() {
     return (
@@ -49,6 +50,9 @@ class App extends Component {
         <InputFoo handlerFromParant={this.handleData} /> 
         <h5>Received by parent:<br />{this.state.fromChild}</h5>
         <SelectAsync />
+        <div>
+          <RenderInput />
+        </div>
       </div>
     );
   }
