@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import InputFoo from './inputFoo'
 import SelectAsync from './select';
 import RenderInput from './renderInput';
+import CheckBoxContainer from './checkbox_container';
 
 const ThemeContext = React.createContext('claro');
 
@@ -52,6 +53,9 @@ class App extends Component {
         <SelectAsync />
         <div>
           <RenderInput />
+        </div>
+        <div>
+          <CheckBoxContainer />
         </div>
       </div>
     );
